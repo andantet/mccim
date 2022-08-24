@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "mcc",
+  "name": "MCC",
+  "version": "${version}",
+  "environment": "client",
+  "entrypoints": { "client": [ "mcc.MCC" ] },
+  "mixins": [ "mcc.mixins.json" ]
+}

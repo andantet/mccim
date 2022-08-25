@@ -4,7 +4,11 @@
   "package": "mcc.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "BossBarHudAccessor",
+    "BossBarHudMixin",
     "ChatHudMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "InGameHudMixin",
     "SoundSystemMixin"
   ],
   "injectors": {

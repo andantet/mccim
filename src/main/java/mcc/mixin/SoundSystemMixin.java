@@ -1,5 +1,6 @@
 package mcc.mixin;
 
+import mcc.MCC;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -24,6 +25,7 @@ public class SoundSystemMixin {
 
     @Inject(method = "play(Lnet/minecraft/client/sound/SoundInstance;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/sound/Sound;getLocation()Lnet/minecraft/util/Identifier;", shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILHARD)
     private void onPlay(SoundInstance sound, CallbackInfo ci, WeightedSoundSet soundSet, Identifier id, Sound rawSound) {
+        if (!MCC.doesLogLarge()) return;
         if (MinecraftClient.getInstance().getSession().getUsername().equals("andantet")) LOGGER.info("{} - {}", sound.getCategory(), rawSound.getLocation());
     }
 }

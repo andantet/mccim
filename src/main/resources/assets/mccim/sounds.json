@@ -1,0 +1,34 @@
+{
+  "state_music.hole_in_the_wall": {
+    "sounds": [
+      {
+        "name": "mccim:state_music/hole_in_the_wall",
+        "stream": true
+      }
+    ]
+  },
+  "state_music.tgttos": {
+    "sounds": [
+      {
+        "name": "mccim:state_music/tgttos",
+        "stream": true
+      }
+    ]
+  },
+  "state_music.battle_box": {
+    "sounds": [
+      {
+        "name": "mccim:state_music/battle_box",
+        "stream": true
+      }
+    ]
+  },
+  "state_music.sky_battle": {
+    "sounds": [
+      {
+        "name": "mccim:state_music/sky_battle",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -7,6 +7,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.c2s.play.ResourcePackStatusC2SPacket;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,5 +34,14 @@ public class ClientPlayNetworkHandlerMixin {
     @Inject(method = "onDeathMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;showsDeathScreen()Z", shift = At.Shift.BEFORE))
     private void onOnDeathMessage(CallbackInfo ci) {
         if (State.getActive().map(State::stopsOnDeath).orElse(false)) MCC.MUSIC_MANAGER.stopNextTick();
+    }
+
+    @Inject(method = "onTitle", at = @At("TAIL"))
+    private void onOnTitle(TitleS2CPacket packet, CallbackInfo ci) {
+        Text text = packet.getTitle();
+        String str = text.getString();
+        if (str.equals("Round Over!") || str.equals("Game Over!")) {
+            MCC.MUSIC_MANAGER.stopNextTick();
+        }
     }
 }

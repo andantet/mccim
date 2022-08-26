@@ -5,5 +5,8 @@
   "version": "${version}",
   "environment": "client",
   "entrypoints": { "client": [ "mcc.MCC" ] },
-  "mixins": [ "mcc.mixins.json" ]
+  "mixins": [ "mcc.mixins.json" ],
+  "depends": {
+    "fabric": ">=0.58"
+  }
 }

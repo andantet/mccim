@@ -1,4 +1,10 @@
 {
+  "early_elimination": {
+    "sounds": [
+      "mcc:games.global.early_elimination"
+    ]
+  },
+
   "state_music.hole_in_the_wall": {
     "sounds": [
       {

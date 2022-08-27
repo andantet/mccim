@@ -121,6 +121,9 @@ public class DefaultGameTracker implements GameTracker {
 
     @Override
     public void onGameChange(Game game, Game oldGame) {
+        if (game != oldGame && game != null && oldGame != null) {
+            this.state = GameState.WAITING_FOR_GAME;
+        }
     }
 
     @Override

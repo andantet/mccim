@@ -21,6 +21,9 @@ public class MCCModConfig implements ConfigData {
     public static class Display {
         @Comment("Whether or not to display the debug HUD at the top-left")
         public boolean debugHud = false;
+
+        @Comment("Whether entities render in lobbies")
+        public LobbyEntityRenderMode lobbyEntityRenderMode = LobbyEntityRenderMode.OFF;
     }
 
     public static ConfigHolder<MCCModConfig> initialize() {

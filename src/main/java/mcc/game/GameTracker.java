@@ -11,4 +11,6 @@ public interface GameTracker {
     void onTimeChange(int time, int oldTime);
 
     void onChatMessage(String message);
+
+    boolean isInGame();
 }

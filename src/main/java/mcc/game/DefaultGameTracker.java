@@ -34,6 +34,11 @@ public class DefaultGameTracker implements GameTracker {
     private SoundInstance lastSound;
 
     @Override
+    public boolean isInGame() {
+        return this.currentGame != null;
+    }
+
+    @Override
     public void onWorldTick(ClientWorld world) {
         /* Game */
 

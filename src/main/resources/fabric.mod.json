@@ -2,8 +2,21 @@
   "schemaVersion": 1,
   "id": "mcc",
   "name": "MCC",
+  "description": "A client improvement mod for Minecraft Championship",
   "version": "${version}",
   "environment": "client",
+  "icon": "assets/mccim/icon.png",
+  "authors": [
+    "Andante"
+  ],
+  "contributors": [
+    "Noxcrew"
+  ],
+  "contact": {
+    "homepage": "https://github.com/andantet/mcc",
+    "sources": "https://github.com/andantet/mcc",
+    "issues": "https://github.com/andantet/mcc/issues"
+  },
   "entrypoints": {
     "client": [ "mcc.MCC" ],
     "modmenu": [ "mcc.MCCModMenu" ]

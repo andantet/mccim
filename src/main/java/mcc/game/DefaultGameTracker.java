@@ -1,5 +1,6 @@
 package mcc.game;
 
+import mcc.MCC;
 import mcc.Sounds;
 import mcc.mixin.BossBarHudAccessor;
 import net.minecraft.client.MinecraftClient;
@@ -112,10 +113,12 @@ public class DefaultGameTracker implements GameTracker {
 
     @Override
     public void onHudRender(MatrixStack matrices, float tickDelta) {
-        this.client.textRenderer.draw(matrices, Text.of("" + this.state.name()), 4, 4, 0xFFFFFF);
-        if (this.currentGame != null) {
-            this.client.textRenderer.draw(matrices, Text.of("" + this.currentGame.asString()), 4, 14, 0xFFFFFF);
-            this.client.textRenderer.draw(matrices, Text.of("" + this.time), 4, 24, 0xFFFFFF);
+        if (MCC.getConfig().display.debugHud) {
+            this.client.textRenderer.draw(matrices, Text.of("" + this.state.name()), 4, 4, 0xFFFFFF);
+            if (this.currentGame != null) {
+                this.client.textRenderer.draw(matrices, Text.of("" + this.currentGame.asString()), 4, 14, 0xFFFFFF);
+                this.client.textRenderer.draw(matrices, Text.of("" + this.time), 4, 24, 0xFFFFFF);
+            }
         }
     }
 

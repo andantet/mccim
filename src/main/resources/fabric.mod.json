@@ -4,7 +4,10 @@
   "name": "MCC",
   "version": "${version}",
   "environment": "client",
-  "entrypoints": { "client": [ "mcc.MCC" ] },
+  "entrypoints": {
+    "client": [ "mcc.MCC" ],
+    "modmenu": [ "mcc.MCCModMenu" ]
+  },
   "mixins": [ "mcc.mixins.json" ],
   "depends": {
     "fabric": ">=0.58"

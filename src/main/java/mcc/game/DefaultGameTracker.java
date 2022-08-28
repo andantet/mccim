@@ -113,6 +113,10 @@ public class DefaultGameTracker implements GameTracker {
             this.endGame(GameState.POST_ROUND_SELF);
         } else if (message.contains("you didn't finish the round!")) {
             this.endGame(GameState.POST_ROUND_SELF);
+        } else if (message.contains("you won Round")) {
+            this.endGame(GameState.POST_ROUND_SELF);
+        } else if (message.contains("you lost Round")) {
+            this.endGame(GameState.POST_ROUND_SELF);
         }
     }
 

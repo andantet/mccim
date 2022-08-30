@@ -24,6 +24,9 @@ public class MCCModConfig implements ConfigData {
 
         @Comment("Whether entities render in lobbies")
         public LobbyEntityRenderMode lobbyEntityRenderMode = LobbyEntityRenderMode.OFF;
+
+        @Comment("Spooky scary")
+        public boolean skeleton = false;
     }
 
     public static ConfigHolder<MCCModConfig> initialize() {

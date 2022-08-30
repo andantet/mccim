@@ -2,5 +2,7 @@
   "text.autoconfig.mcc.title": "MCC Island",
   "text.autoconfig.mcc.option.display": "Display",
   "text.autoconfig.mcc.option.display.debugHud": "Debug HUD",
-  "text.autoconfig.mcc.option.display.lobbyEntityRenderMode": "Lobby Entity Render Mode"
+  "text.autoconfig.mcc.option.display.lobbyEntityRenderMode": "Lobby Entity Render Mode",
+  "text.autoconfig.mcc.option.display.skeleton": "Skeleton",
+  "options.mcc.skeletonCustomisation.title": "Skeleton Customisation"
 }

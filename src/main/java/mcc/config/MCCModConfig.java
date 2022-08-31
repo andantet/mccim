@@ -1,6 +1,6 @@
 package mcc.config;
 
-import mcc.MCC;
+import mcc.game.Game;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.ConfigHolder;
@@ -9,8 +9,9 @@ import me.shedaniel.autoconfig.annotation.Config.Gui.Background;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.client.gui.screen.Screen;
+
+import java.util.Arrays;
 
 @Background(Background.TRANSPARENT)
 @Config(name = "mcc")
@@ -26,6 +27,25 @@ public class MCCModConfig implements ConfigData {
         public boolean skeleton = false;
     }
 
+    @CollapsibleObject(startExpanded = true)
+    public ChatConfig chat = new ChatConfig();
+
+    public static class ChatConfig {
+        @CollapsibleObject(startExpanded = true)
+        public HideDeathMessagesConfig hideDeathMessages = new HideDeathMessagesConfig();
+
+        public static class HideDeathMessagesConfig {
+            public boolean enabled = false;
+
+            @Comment("Whether or not to hide death messages in a game mode")
+            public Game[] in = Game.values();
+
+            public boolean contains(Game game) {
+                return game != null && Arrays.asList(this.in).contains(game);
+            }
+        }
+    }
+
     @CollapsibleObject
     public DebugConfig debug = new DebugConfig();
 
@@ -37,8 +57,7 @@ public class MCCModConfig implements ConfigData {
         public boolean tetrisPieces = false;
     }
 
-    public static ConfigHolder<MCCModConfig> initialize() {
-        ServerLifecycleEvents.START_DATA_PACK_RELOAD.register((server, manager) -> MCC.CONFIG.load());
+    public static ConfigHolder<MCCModConfig> create() {
         return AutoConfig.register(MCCModConfig.class, JanksonConfigSerializer::new);
     }
 

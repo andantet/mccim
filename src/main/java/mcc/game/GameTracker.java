@@ -13,4 +13,6 @@ public interface GameTracker {
     void onChatMessage(String message);
 
     boolean isInGame();
+
+    Game getGame();
 }

@@ -34,6 +34,11 @@ public class DefaultGameTracker implements GameTracker {
     private SoundInstance lastSound;
 
     @Override
+    public Game getGame() {
+        return this.currentGame;
+    }
+
+    @Override
     public boolean isInGame() {
         return this.currentGame != null;
     }

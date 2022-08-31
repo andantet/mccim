@@ -3,6 +3,10 @@
   "text.autoconfig.mcc.option.display": "Display",
   "text.autoconfig.mcc.option.display.lobbyEntityRenderMode": "Lobby Entity Render Mode",
   "text.autoconfig.mcc.option.display.skeleton": "Skeleton",
+  "text.autoconfig.mcc.option.chat": "Chat",
+  "text.autoconfig.mcc.option.chat.hideDeathMessages": "Hide Death Messages",
+  "text.autoconfig.mcc.option.chat.hideDeathMessages.enabled": "Enabled",
+  "text.autoconfig.mcc.option.chat.hideDeathMessages.in": "In:",
   "text.autoconfig.mcc.option.debug": "Debug",
   "text.autoconfig.mcc.option.debug.debugHud": "Debug HUD",
   "text.autoconfig.mcc.option.debug.tetrisPieces": "Debug Tetris Pieces",
@@ -13,5 +17,6 @@
   "key.category.mccim.tetris.move_up": "[Tetris] Move Up",
   "key.category.mccim.tetris.move_down": "[Tetris] Move Down",
 
-  "options.mcc.skeletonCustomisation.title": "Skeleton Customisation"
+  "options.mcc.skeletonCustomisation.title": "Skeleton Customisation",
+  "text.mcc.reload_config": "[MCC] Config reloaded"
 }

@@ -122,7 +122,7 @@ public class DefaultGameTracker implements GameTracker {
 
     @Override
     public void onHudRender(MatrixStack matrices, float tickDelta) {
-        if (MCC.getConfig().display.debugHud) {
+        if (MCC.getConfig().debug.debugHud) {
             this.client.textRenderer.draw(matrices, Text.of("" + this.state.name()), 4, 4, 0xFFFFFF);
             if (this.currentGame != null) {
                 this.client.textRenderer.draw(matrices, Text.of("" + this.currentGame.asString()), 4, 14, 0xFFFFFF);

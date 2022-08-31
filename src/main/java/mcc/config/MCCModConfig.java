@@ -16,17 +16,25 @@ import net.minecraft.client.gui.screen.Screen;
 @Config(name = "mcc")
 public class MCCModConfig implements ConfigData {
     @CollapsibleObject(startExpanded = true)
-    public Display display = new Display();
+    public DisplayConfig display = new DisplayConfig();
 
-    public static class Display {
-        @Comment("Whether or not to display the debug HUD at the top-left")
-        public boolean debugHud = false;
-
+    public static class DisplayConfig {
         @Comment("Whether entities render in lobbies")
         public LobbyEntityRenderMode lobbyEntityRenderMode = LobbyEntityRenderMode.OFF;
 
         @Comment("Spooky scary")
         public boolean skeleton = false;
+    }
+
+    @CollapsibleObject
+    public DebugConfig debug = new DebugConfig();
+
+    public static class DebugConfig {
+        @Comment("Whether or not to display the debug HUD at the top-left")
+        public boolean debugHud = false;
+
+        @Comment("Whether or not to only display every tetris piece possible")
+        public boolean tetrisPieces = false;
     }
 
     public static ConfigHolder<MCCModConfig> initialize() {

@@ -4,11 +4,13 @@ import mcc.config.MCCModConfig;
 import mcc.game.DefaultGameTracker;
 import mcc.game.GameTracker;
 import mcc.skeleton.SkeletonCommand;
+import mcc.tetris.TetrisCommand;
 import me.shedaniel.autoconfig.ConfigHolder;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.event.Event;
 
 public class MCC implements ClientModInitializer {
     private static MCC INSTANCE;
@@ -33,6 +35,8 @@ public class MCC implements ClientModInitializer {
         ClientTickEvents.START_WORLD_TICK.register(this.gameTracker::onWorldTick);
         HudRenderCallback.EVENT.register(this.gameTracker::onHudRender);
 
-        ClientCommandRegistrationCallback.EVENT.register(SkeletonCommand::register);
+        Event<ClientCommandRegistrationCallback> event = ClientCommandRegistrationCallback.EVENT;
+        event.register(SkeletonCommand::register);
+        event.register(TetrisCommand::register);
     }
 }

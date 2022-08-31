@@ -13,6 +13,7 @@
   ],
   "client": [
     "ChatHudMixin",
+    "ClientBuiltinResourcePackProviderMixin",
     "skeleton.PlayerEntityRendererMixin"
   ]
 }

@@ -20,7 +20,7 @@ public class EntityRenderDispatcherMixin {
             return;
         }
 
-        if (!MCC.getInstance().gameTracker.isInGame()) {
+        if (!MCC.GAME_TRACKER.isInGame()) {
             switch (MCC.getConfig().display.lobbyEntityRenderMode) {
                 case ALL_ENTITIES -> cir.setReturnValue(false);
                 case PLAYERS -> {

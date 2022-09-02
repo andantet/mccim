@@ -1,17 +1,19 @@
 package mcc;
 
+import mcc.config.MCCModConfig.ChatConfig.HideMessagesConfig;
+
 import java.util.function.BooleanSupplier;
 
 import static mcc.MCC.*;
 
 public enum Rank {
-    NONE('\uE0A7', () -> HIDE_MESSAGES_FROM.none),
-    CHAMP('\uE0AA', () -> HIDE_MESSAGES_FROM.champ),
-    GRAND_CHAMP('\uE0AB', () -> HIDE_MESSAGES_FROM.grandChamp),
-    GRAND_CHAMP_ROYALE('\uE0AC', () -> HIDE_MESSAGES_FROM.grandChampRoyale),
-    COMPETITOR('\uE0AD', () -> HIDE_MESSAGES_FROM.competitor),
-    MODERATOR('\uE0A8', () -> HIDE_MESSAGES_FROM.moderator),
-    NOXCREW('\uE082', () -> HIDE_MESSAGES_FROM.noxcrew);
+    NONE('\uE0A7', () -> getMessagesConfig().none),
+    CHAMP('\uE0AA', () -> getMessagesConfig().champ),
+    GRAND_CHAMP('\uE0AB', () -> getMessagesConfig().grandChamp),
+    GRAND_CHAMP_ROYALE('\uE0AC', () -> getMessagesConfig().grandChampRoyale),
+    COMPETITOR('\uE0AD', () -> getMessagesConfig().competitor),
+    MODERATOR('\uE0A8', () -> getMessagesConfig().moderator),
+    NOXCREW('\uE082', () -> getMessagesConfig().noxcrew);
 
     private final char icon;
     private final BooleanSupplier hidesMessages;
@@ -19,6 +21,10 @@ public enum Rank {
     Rank(char icon, BooleanSupplier hidesMessages) {
         this.icon = icon;
         this.hidesMessages = hidesMessages;
+    }
+
+    public static HideMessagesConfig.RanksConfig.From getMessagesConfig() {
+        return getHideMessagesConfig().ranks.from;
     }
 
     public char getIcon() {

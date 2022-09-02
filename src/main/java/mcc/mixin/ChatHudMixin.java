@@ -32,7 +32,7 @@ public class ChatHudMixin {
     )
     private void onAddMessage(Text message, MessageSignatureData signature, int ticks, MessageIndicator indicator, boolean refresh, CallbackInfo ci) {
         String content = message.getString();
-        GameTracker gameTracker = MCC.getInstance().gameTracker;
+        GameTracker gameTracker = MCC.GAME_TRACKER;
 
         gameTracker.onChatMessage(content);
 

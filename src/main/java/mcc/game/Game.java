@@ -1,5 +1,6 @@
 package mcc.game;
 
+import mcc.config.MCCModConfig.ChatConfig.HideMessagesConfig;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 
@@ -14,10 +15,10 @@ import java.util.stream.Collectors;
 import static mcc.MCC.*;
 
 public enum Game implements StringIdentifiable {
-    HOLE_IN_THE_WALL("Hole in the Wall", "HOLE IN THE WALL", () -> HIDE_DEATH_MESSAGES_IN.holeInTheWall),
-    TGTTOS("TGTTOS", "TGTTOS", () -> HIDE_DEATH_MESSAGES_IN.tgttos),
-    SKY_BATTLE("Sky Battle", "SKY BATTLE", () -> HIDE_DEATH_MESSAGES_IN.skyBattle),
-    BATTLE_BOX("Battle Box", "BATTLE BOX", () -> HIDE_DEATH_MESSAGES_IN.battleBox);
+    HOLE_IN_THE_WALL("Hole in the Wall", "HOLE IN THE WALL", () -> getMessagesConfig().holeInTheWall),
+    TGTTOS("TGTTOS", "TGTTOS", () -> getMessagesConfig().tgttos),
+    SKY_BATTLE("Sky Battle", "SKY BATTLE", () -> getMessagesConfig().skyBattle),
+    BATTLE_BOX("Battle Box", "BATTLE BOX", () -> getMessagesConfig().battleBox);
 
     private static final Map<String, Game> GAMES_FOR_SCOREBOARD = Arrays.stream(Game.values()).collect(Collectors.toMap(Game::getScoreboardName, Function.identity()));
 
@@ -30,6 +31,10 @@ public enum Game implements StringIdentifiable {
         this.scoreboardName = scoreboardName + " ";
         this.sound = new Identifier("mccim", "state_music." + this.name().toLowerCase(Locale.ROOT));
         this.hideDeathMessages = hideDeathMessages;
+    }
+
+    public static HideMessagesConfig.DeathsConfig.In getMessagesConfig() {
+        return getHideMessagesConfig().deaths.in;
     }
 
     public static Optional<Game> fromScoreboard(String scoreboardName) {

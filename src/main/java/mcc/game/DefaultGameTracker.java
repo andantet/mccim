@@ -33,6 +33,9 @@ public class DefaultGameTracker implements GameTracker {
 
     private SoundInstance lastSound;
 
+    public DefaultGameTracker() {
+    }
+
     @Override
     public Game getGame() {
         return this.currentGame;

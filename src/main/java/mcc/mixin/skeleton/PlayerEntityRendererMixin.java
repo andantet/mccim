@@ -34,7 +34,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
 
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
     private void onRender(AbstractClientPlayerEntity player, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertices, int light, CallbackInfo ci) {
-        if (!MCC.getConfig().display.skeleton) return;
+        if (!MCC.getConfig().debug.skeleton) return;
 
         if (this.fakeSkeletonEntity == null) {
             this.fakeSkeletonEntity = new SkeletonEntity(EntityType.SKELETON, player.world);

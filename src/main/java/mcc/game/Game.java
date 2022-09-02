@@ -7,24 +7,29 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BooleanSupplier;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static mcc.MCC.*;
+
 public enum Game implements StringIdentifiable {
-    HOLE_IN_THE_WALL("Hole in the Wall", "HOLE IN THE WALL"),
-    TGTTOS("TGTTOS", "TGTTOS"),
-    SKY_BATTLE("Sky Battle", "SKY BATTLE"),
-    BATTLE_BOX("Battle Box", "BATTLE BOX");
+    HOLE_IN_THE_WALL("Hole in the Wall", "HOLE IN THE WALL", () -> HIDE_DEATH_MESSAGES_IN.holeInTheWall),
+    TGTTOS("TGTTOS", "TGTTOS", () -> HIDE_DEATH_MESSAGES_IN.tgttos),
+    SKY_BATTLE("Sky Battle", "SKY BATTLE", () -> HIDE_DEATH_MESSAGES_IN.skyBattle),
+    BATTLE_BOX("Battle Box", "BATTLE BOX", () -> HIDE_DEATH_MESSAGES_IN.battleBox);
 
     private static final Map<String, Game> GAMES_FOR_SCOREBOARD = Arrays.stream(Game.values()).collect(Collectors.toMap(Game::getScoreboardName, Function.identity()));
 
     private final String displayName, scoreboardName;
     private final Identifier sound;
+    private final BooleanSupplier hideDeathMessages;
 
-    Game(String displayName, String scoreboardName) {
+    Game(String displayName, String scoreboardName, BooleanSupplier hideDeathMessages) {
         this.displayName = displayName;
         this.scoreboardName = scoreboardName + " ";
         this.sound = new Identifier("mccim", "state_music." + this.name().toLowerCase(Locale.ROOT));
+        this.hideDeathMessages = hideDeathMessages;
     }
 
     public static Optional<Game> fromScoreboard(String scoreboardName) {
@@ -37,6 +42,10 @@ public enum Game implements StringIdentifiable {
 
     public Identifier getSound() {
         return this.sound;
+    }
+
+    public boolean hidesDeathMessages() {
+        return this.hideDeathMessages.getAsBoolean();
     }
 
     @Override

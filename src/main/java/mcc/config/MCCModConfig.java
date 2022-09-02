@@ -1,6 +1,5 @@
 package mcc.config;
 
-import mcc.game.Game;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.ConfigHolder;
@@ -11,40 +10,74 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.minecraft.client.gui.screen.Screen;
 
-import java.util.Arrays;
-
 @Background(Background.TRANSPARENT)
 @Config(name = "mcc")
 public class MCCModConfig implements ConfigData {
-    @CollapsibleObject(startExpanded = true)
-    public DisplayConfig display = new DisplayConfig();
-
-    public static class DisplayConfig {
-        @Comment("Whether entities render in lobbies")
-        public LobbyEntityRenderMode lobbyEntityRenderMode = LobbyEntityRenderMode.OFF;
-
-        @Comment("Spooky scary")
-        public boolean skeleton = false;
-    }
+    /* Chat */
 
     @CollapsibleObject(startExpanded = true)
     public ChatConfig chat = new ChatConfig();
 
     public static class ChatConfig {
         @CollapsibleObject(startExpanded = true)
-        public HideDeathMessagesConfig hideDeathMessages = new HideDeathMessagesConfig();
+        public HideMessagesConfig hideMessages = new HideMessagesConfig();
 
-        public static class HideDeathMessagesConfig {
-            public boolean enabled = false;
+        public static class HideMessagesConfig {
+            @Comment("Whether or not to keep any message containing your client username")
+            public boolean keepMessagesWithUsername = true;
 
-            @Comment("Whether or not to hide death messages in a game mode")
-            public Game[] in = Game.values();
+            @CollapsibleObject
+            public DeathsConfig deaths = new DeathsConfig();
 
-            public boolean contains(Game game) {
-                return game != null && Arrays.asList(this.in).contains(game);
+            public static class DeathsConfig {
+                public boolean enabled = false;
+
+                @CollapsibleObject(startExpanded = true)
+                public In in = new In();
+
+                public static class In {
+                    public boolean
+                        holeInTheWall,
+                        tgttos,
+                        skyBattle,
+                        battleBox;
+                }
+            }
+
+            @CollapsibleObject
+            public RanksConfig ranks = new RanksConfig();
+
+            public static class RanksConfig {
+                public boolean enabled = false;
+
+                @CollapsibleObject(startExpanded = true)
+                public From from = new From();
+
+                public static class From {
+                    public boolean
+                        none,
+                        champ,
+                        grandChamp,
+                        grandChampRoyale,
+                        competitor,
+                        moderator,
+                        noxcrew;
+                }
             }
         }
     }
+
+    /* Display */
+
+    @CollapsibleObject(startExpanded = true)
+    public DisplayConfig display = new DisplayConfig();
+
+    public static class DisplayConfig {
+        @Comment("Whether entities render in lobbies")
+        public LobbyEntityRenderMode lobbyEntityRenderMode = LobbyEntityRenderMode.OFF;
+    }
+
+    /* Debug */
 
     @CollapsibleObject
     public DebugConfig debug = new DebugConfig();
@@ -55,6 +88,9 @@ public class MCCModConfig implements ConfigData {
 
         @Comment("Whether or not to only display every tetris piece possible")
         public boolean tetrisPieces = false;
+
+        @Comment("Spooky scary")
+        public boolean skeleton = false;
     }
 
     public static ConfigHolder<MCCModConfig> create() {

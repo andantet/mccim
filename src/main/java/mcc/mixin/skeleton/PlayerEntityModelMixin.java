@@ -20,7 +20,7 @@ public abstract class PlayerEntityModelMixin<T extends LivingEntity> extends Bip
 
     @Inject(method = "setAngles(Lnet/minecraft/entity/LivingEntity;FFFFF)V", at = @At("TAIL"))
     private void onSetAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch, CallbackInfo ci) {
-        if (!MCC.getConfig().display.skeleton) return;
+        if (!MCC.getConfig().debug.skeleton) return;
 
         if (entity instanceof PlayerEntity player) {
             this.leftLeg.visible = player.isPartVisible(PlayerModelPart.LEFT_PANTS_LEG);

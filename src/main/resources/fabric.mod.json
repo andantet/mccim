@@ -23,6 +23,7 @@
   },
   "mixins": [ "mcc.mixins.json" ],
   "depends": {
-    "fabric": ">=0.58"
+    "fabric": ">=0.58",
+    "cloth-config": ">=8.0"
   }
 }

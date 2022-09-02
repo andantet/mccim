@@ -160,7 +160,7 @@ public class DefaultGameTracker implements GameTracker {
         }
 
         // state decay change
-        if (lastTime == 1 || lastTime == 0) {
+        if (lastTime == 1) {
             if (this.state == GameState.WAITING_FOR_GAME) {
                 this.onGameStart(this.currentGame);
                 this.state = GameState.ACTIVE;

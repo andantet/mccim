@@ -1,6 +1,7 @@
 package mcc.mixin;
 
 import mcc.MCC;
+import mcc.MCCChatConstants;
 import mcc.Rank;
 import mcc.config.MCCModConfig.ChatConfig.HideMessagesConfig;
 import mcc.game.Game;
@@ -47,7 +48,7 @@ public class ChatHudMixin {
         if (deathMessages.enabled) {
             Game game = gameTracker.getGame();
             if (game != null && game.hidesDeathMessages()) {
-                if (content.startsWith("[\uE0AF]")) {
+                if (content.startsWith("[%s]".formatted(MCCChatConstants.DEATH_SKULL))) {
                     ci.cancel();
                     return;
                 }

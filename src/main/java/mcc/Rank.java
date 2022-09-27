@@ -6,6 +6,7 @@ import java.util.function.BooleanSupplier;
 
 import static mcc.MCC.*;
 
+// TODO fix icon locations, reference texture?
 public enum Rank {
     NONE('\uE0A7', () -> getMessagesConfig().none),
     CHAMP('\uE0AA', () -> getMessagesConfig().champ),
